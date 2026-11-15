@@ -1,9 +1,14 @@
 
-// ==================================
+// ==========================================
 // UNDANGAN DIGITAL ALYA & RAKA
-// ==================================
+// PREMIUM VERSION
+// ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ==================================
+  // ELEMENT
+  // ==================================
 
   const openButton = document.getElementById("openInvitation");
   const cover = document.getElementById("cover");
@@ -38,11 +43,76 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           await music.play();
         } catch (error) {
-          console.log("Musik tidak dapat diputar:", error);
+          console.log("Musik belum bisa diputar:", error);
         }
       }
 
+      // Aktifkan animasi setelah undangan dibuka
+      startScrollAnimation();
+
     });
+  }
+
+  // ==================================
+  // ANIMASI SCROLL
+  // ==================================
+
+  function startScrollAnimation() {
+
+    const elements = document.querySelectorAll(
+      ".hero p, .hero h1, " +
+      ".section > h2, " +
+      ".section > h3, " +
+      ".section > p, " +
+      ".section > .ampersand, " +
+      ".gallery > div, " +
+      "footer h2, footer p"
+    );
+
+    elements.forEach((element) => {
+      element.classList.add("reveal");
+    });
+
+    // Browser tanpa IntersectionObserver
+    if (!("IntersectionObserver" in window)) {
+      elements.forEach((element) => {
+        element.classList.add("active", "blink-once");
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            const element = entry.target;
+
+            element.classList.add("active");
+
+            // Kedip satu kali
+            element.classList.add("blink-once");
+
+            // Jangan animasikan ulang
+            currentObserver.unobserve(element);
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -30px 0px"
+      }
+    );
+
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+
   }
 
   // ==================================
@@ -50,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==================================
 
   const countdown = document.getElementById("countdown");
+
   const weddingDate = new Date(
     "2026-12-20T08:00:00+07:00"
   ).getTime();
@@ -96,15 +167,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==================================
 
   if (copyButton) {
+
     copyButton.addEventListener("click", async () => {
 
-      const accountNumber = document.getElementById("accountNumber");
+      const accountNumber =
+        document.getElementById("accountNumber");
 
       if (!accountNumber) return;
 
       const number = accountNumber.textContent.trim();
 
       try {
+
         await navigator.clipboard.writeText(number);
 
         copyButton.textContent = "Berhasil Disalin!";
@@ -114,10 +188,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2000);
 
       } catch (error) {
+
         alert("Gagal menyalin. Silakan salin manual.");
+
       }
 
     });
+
   }
 
 });
