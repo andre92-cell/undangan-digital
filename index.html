@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan Alya & Raka</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <section class="cover" id="cover">
+    <div class="cover-box">
+      <p>THE WEDDING OF</p>
+      <h1>Alya <span>&</span> Raka</h1>
+      <p>20 DESEMBER 2026</p>
+      <div class="line"></div>
+      <p>Kepada Yth.</p>
+      <h3 id="guestName">Tamu Undangan</h3>
+      <button id="openInvitation">Buka Undangan</button>
+    </div>
+  </section>
+
+  <main id="invitation">
+    <section class="hero">
+      <p>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْمِ</p>
+      <h1>Alya <span>&</span> Raka</h1>
+      <p>20 Desember 2026</p>
+      <p>Dengan memohon rahmat Allah SWT, kami mengundang Anda untuk hadir di hari bahagia kami.</p>
+    </section>
+
+    <section class="section">
+      <p>THE BRIDE & THE GROOM</p>
+      <h2>Mempelai</h2>
+      <h3>Alya Putri</h3>
+      <p>Putri dari Bapak Nama Ayah & Ibu Nama Ibu</p>
+      <div class="ampersand">&</div>
+      <h3>Raka Pratama</h3>
+      <p>Putra dari Bapak Nama Ayah & Ibu Nama Ibu</p>
+    </section>
+
+    <section class="section countdown-section">
+      <h2>Menuju Hari Bahagia</h2>
+      <div id="countdown">Memuat countdown...</div>
+    </section>
+
+    <section class="section">
+      <h2>Rangkaian Acara</h2>
+      <h3>Akad Nikah</h3>
+      <p>Minggu, 20 Desember 2026 | 08.00 WIB</p>
+      <h3>Resepsi</h3>
+      <p>Minggu, 20 Desember 2026 | 11.00 WIB</p>
+      <p>Gedung / Lokasi Acara, Kota</p>
+      <a href="https://maps.google.com" target="_blank">Lihat Lokasi</a>
+    </section>
+
+    <section class="section">
+      <h2>Cerita Kami</h2>
+      <p>Dari dua langkah yang berbeda, kami dipertemukan dan memutuskan untuk berjalan bersama menuju masa depan.</p>
+    </section>
+
+    <section class="section">
+      <h2>Galeri Foto</h2>
+      <div class="gallery">
+        <div>Foto 1</div>
+        <div>Foto 2</div>
+        <div>Foto 3</div>
+      </div>
+    </section>
+
+    <section class="section gift">
+      <h2>Wedding Gift</h2>
+      <p>Bank BCA</p>
+      <p id="accountNumber">1234567890</p>
+      <button id="copyAccount">Salin Nomor Rekening</button>
+    </section>
+
+    <section class="section">
+      <h2>Ucapan & Doa</h2>
+      <p>Terima kasih atas doa dan restunya.</p>
+    </section>
+
+    <footer>
+      <h2>Alya & Raka</h2>
+      <p>Terima kasih atas kehadiran Anda.</p>
+    </footer>
+  </main>
+
+  <audio id="weddingMusic" src="music.mp3" loop></audio>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    document.getElementById("guestName").textContent =
+      params.get("to") || "Tamu Undangan";
+  </script>
+
+</body>
+</html>
